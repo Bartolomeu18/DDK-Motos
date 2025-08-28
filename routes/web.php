@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AgenteController;
 use  App\Http\Controllers\MotoqueiroController;
 use App\Http\Controllers\MotoController;
+use App\Http\Controllers\MotoqueiroNoCampoController;
+use App\Http\Controllers\GaragemController;
 Route::get('/', function () {
     return view('welcome');
 });
@@ -33,11 +35,11 @@ Route::post('/motos/create', [MotoController::class, 'store'])->name('motos.stor
 Route::get('/moto/{id}/edit', [MotoController::class, 'edit'])->name('moto-editar');
 Route::put('/moto/{id}/update', [MotoController::class, 'update'])->name('moto-atualizar');
 Route::delete('/moto/{id}/delete', [MotoController::class, 'destroy'])->name('moto-excluir');
-
-
-Route::get('/motos/receber', [MotoController::class, 'receber'])->name('motos.receber');
-//
-Route::get('/motoqueiros/rua', [MotoqueiroController::class, 'rua'])->name('motoqueiros.rua');
+    //Motoqueiro no campo(nas ruas,tirar moto da garagem)
+Route::get('/motoqueiros/rua', [MotoqueiroNoCampoController::class,'index'])->name('motoqueiros-index');
+Route::get('/Adicionar motoqueiro ao campo/{id}',[MotoqueiroNoCampoController::class,'store'])->name('motoqueiros-campo');
+    //tira motoqueiro do campo(meter moto na garagem)
+Route::get('/Receber as motorizadas', [GaragemController::class, 'index'])->name('motos.garagem');
 
 
     // Relatórios

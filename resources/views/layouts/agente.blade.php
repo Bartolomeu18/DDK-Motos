@@ -41,11 +41,11 @@
         <img src="{{asset('img/botao-adicionar.png')}}" alt="icon motorizada"> <p> Add Moto</p>
     </a>
     <!--motoqueiros colocar motoqueiros nas ruas -->
-    <a href="{{route('gestão-motoqueiro')}}" class=" hover:text-red-600 text-lg font-bold flex gap-3 align-center space-around">
-        <img src="{{asset('img/rua.png')}}" alt="icon motorizada" class="w-10"> <p>Motoqueiros na Rua</p>
+    <a href="{{route('motoqueiros-index')}}" class=" hover:text-red-600 text-lg font-bold flex gap-3 align-center space-around">
+        <img src="{{asset('img/rua.png')}}" alt="icon motorizada" class="w-10"> <p>Motoqueiros no Campo</p>
     </a>
     <!--recesão diaria de moto -->
- <a href="{{route('gestão-motoqueiro')}}" class=" hover:text-red-600 text-lg font-bold flex gap-3 align-center space-around">
+ <a href="{{route('motos.garagem')}}" class=" hover:text-red-600 text-lg font-bold flex gap-3 align-center space-around">
         <img src="{{asset('img/chegar.png')}}" alt="icon motorizada" class="w-10"> <p> Receber Moto</p>
     </a>
     <!-- Relatórios -->
