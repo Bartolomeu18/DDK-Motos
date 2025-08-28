@@ -33,8 +33,7 @@ class UserRequest extends FormRequest
             'endereco' => 'required|string|max:255',
             'password' => 'required|string|min:6|confirmed',
             'role' => 'required|in:agente,motoqueiro',
-'status' => 'required|in:ativo,inativo',
-
+            'status' => 'required|in:ativo,inativo',
         ];
     }
      public function messages()

@@ -114,7 +114,13 @@ class AgenteController extends Controller
     }
 
     public function motoqueiros(){
-        $usuarios= User::where('role','motoqueiro')->get();
+       $request = request('search');
+    //dd($request );
+        if($request){
+        $usuarios= User::where('name','like','%'.$request.'%')->get();  
+        }else{
+           $usuarios= User::where('role','motoqueiro')->get();
+        }
        // dd($usuarios);
         return view('Agente.motoqueiros.index',compact('usuarios'));
    

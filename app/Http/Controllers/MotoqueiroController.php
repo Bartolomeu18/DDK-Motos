@@ -13,7 +13,7 @@ class MotoqueiroController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -94,17 +94,16 @@ class MotoqueiroController extends Controller
         } catch (\Throwable $th) {
             //throw $th;
              return redirect()->back()->with('error','usuário não editado');
-
         }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $user)
     {
        try {
-        $user= User::FindOrFail($id);
+        $user= User::FindOrFail($user);
       $user->delete();
        return redirect()->back()->with('sucesso','usuário excluido com sucesso');
         } catch (\Throwable $th) {

@@ -37,7 +37,7 @@
     </a>
 
     <!-- Gestão de Motos -->
-    <a href="{{route('gestão-motoqueiro')}}" class=" hover:text-red-600 text-lg font-bold flex gap-3 align-center space-around">
+    <a href="{{route('gestão-moto')}}" class=" hover:text-red-600 text-lg font-bold flex gap-3 align-center space-around">
         <img src="{{asset('img/botao-adicionar.png')}}" alt="icon motorizada"> <p> Add Moto</p>
     </a>
     <!--motoqueiros colocar motoqueiros nas ruas -->

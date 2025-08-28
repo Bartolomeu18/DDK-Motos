@@ -6,6 +6,7 @@
 
     <!-- Barra de pesquisa -->
     <form method="GET" action="" class="mb-6">
+        @csrf
         <div class="flex items-center space-x-2">
             <input type="text" name="search" value="{{ request('search') }}"
                    placeholder="Buscar por nome ou email"
