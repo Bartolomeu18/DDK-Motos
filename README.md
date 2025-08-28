@@ -27,7 +27,7 @@ O objetivo é facilitar o controle de motos, motoqueiros e receitas diárias, pe
 - [Laravel](https://laravel.com/) - Framework PHP  
 - [MySQL](https://www.mysql.com/) - Banco de dados relacional  
 - [Blade](https://laravel.com/docs/blade) - Template engine  
-- [Tailwind] - (front-end)  
+- [Tailwind](https://tailwindcss.com/) - (front-end)  
 
 ---
 
