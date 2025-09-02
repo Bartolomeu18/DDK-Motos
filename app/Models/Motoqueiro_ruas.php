@@ -3,12 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
-class Motoqueiro_rua extends Model
-{
+use App\Models\User;  
+use App\Models\Moto; 
+class Motoqueiro_ruas extends Model
+ {
   protected $fillable = [
     'motoqueiro_id',
     'moto_id',
+    'date',
 ];
 
 
@@ -25,6 +27,8 @@ class Motoqueiro_rua extends Model
      
     public function moto()
     {
-        return $this->belongsTo(Moto::class, 'moto_id');
+        return $this->belongsTo(moto::class, 'moto_id');
     }
+
+
 }

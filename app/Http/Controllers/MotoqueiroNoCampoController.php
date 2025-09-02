@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Motoqueiro_Rua;
+use App\Models\Motoqueiro_ruas;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\moto;
@@ -40,12 +40,13 @@ class MotoqueiroNoCampoController extends Controller
     public function store(string $id)
     {
         $get = moto::where('motoqueiro_id',$id)->first();
-        $motoId = $get->id;
-        
+        $motoId= $get->id;
+        $date=today();
         try {
-           Motoqueiro_Rua::create([
+           Motoqueiro_ruas::create([
             'motoqueiro_id'=>$id,
             'moto_id'=>$motoId,
+            'date'=>$date,
            ]); 
             return redirect()->back()->with('sucesso',' motoqueiro pronto para entrar no campo');
 

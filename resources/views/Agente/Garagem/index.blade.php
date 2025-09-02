@@ -42,25 +42,28 @@
                 <tr>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Motoqueiro</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Moto</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Hora de saida</th>                    
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Hora de saida</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Hora de chegada</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ação</th>                    
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                @forelse ($MCampos as $MCampo)
+                @forelse ($dados as $dado)
                     <tr>
-                        <td class="px-6 py-4">{{ $$MCampo->motoqueiro_id->name }}</td>
-                        <td class="px-6 py-4">{{ $$MCampo->moto_id->modelo }}</td>
-                        <td class="px-6 py-4 capitalize">{{ $$MCampo->created_at}}</td>
-                        <td class="px-6 py-4 space-x-2">
-                            <a href=""
-                               class="text-blue-600 hover:underline">Add Moto na Garagem</a>
-                        </td>
-                    </tr>
+                        <td class="px-6 py-4">{{$dado['nomeMotoqueiro']}}</td>
+                        <td class="px-6 py-4">{{$dado['modeloMoto']}}</td>
+                        <td class="px-6 py-4 capitalize"> {{$data}} </td>
+                 
                 @empty
                     <tr>
                         <td colspan="4" class="px-6 py-4 text-center text-gray-500">Nenhum usuário encontrado.</td>
                     </tr>
                 @endforelse
+                       <td class="px-6 py-4 space-x-2">
+                            <a href="{{route('formulário-garagem', ['nome' => $dado['nomeMotoqueiro'],'modelo'=>$dado['modeloMoto']])}}"
+                               class="text-blue-600 hover:underline">Add Moto na Garagem</a>
+                        </td>
+                  </tr>
             </tbody>
         </table>
     </div>

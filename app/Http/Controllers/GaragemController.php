@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Garagem;
-use App\Models\MotoqueiroNoCampo;
+use App\Models\User;
+use App\Models\Motoqueiro_ruas;
+use App\Models\moto;
 use Illuminate\Http\Request;
 
 class GaragemController extends Controller
@@ -13,17 +15,31 @@ class GaragemController extends Controller
      */
     public function index()
     {
-        $MCampo = MotoqueiroNoCampo::where('created_at',today())->get();
-        
-       return view('Agente.Garagem.index',['MCampos' =>$MCampo]);
+    $MCampos=  Motoqueiro_ruas::where('date', today())->get();
+        $data= today();
+    foreach ($MCampos as $MCampo) {
+     $nomeDoMotoqueiro =User::where('id',$MCampo->motoqueiro_id)->first();
+     //$nome = $nomeDoMotoqueiro->name;
+     $modeloDaMotoNoCampo = moto::where('id',$MCampo->moto_id)->first();
+    // $modelo = $modeloDaMotoNoCampo->modelo;
+    
+    $dados[]=[
+        'nomeMotoqueiro'=>$nomeDoMotoqueiro->name,
+        'modeloMoto'=> $modeloDaMotoNoCampo->modelo,
+    ];
+    }
+
+     
+       return view('Agente.Garagem.index', compact('dados','data'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(string $nome,$modelo)
     {
-        //
+        //dd($dado);
+       return view('Agente.Garagem.formulário',compact('nome','modelo'));
     }
 
     /**
@@ -31,7 +47,24 @@ class GaragemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+    'hora_de_chegada' => 'required|date_format:H:i',
+]);
+        try {
+        //dd($request->all());
+        Garagem::create([ 
+    'name'=>$request->name,
+    'moto' =>$request->moto,
+    'cota'=>$request->cota,
+    'divida'=>$request->divida,
+    'multa' =>$request->multa,
+    'hora_de_chegada' =>$request->hora_de_chegada,
+        ]);
+          return redirect()->back()->with('sucesso', 'moto recebida');
+        } catch (\Throwable $th) {
+          return "error ao cadastara os dados de chegada" .$th;
+        }
+    
     }
 
     /**
