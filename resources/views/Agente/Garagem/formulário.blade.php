@@ -31,7 +31,7 @@
         {{session('$error')}}
     </div>
     @endif 
-    <form method="post" action="{{ route('store-garagem', ['nome' => $nome,'modelo'=> $modelo]) }}">
+    <form method="post" action="{{ route('store-garagem', ['id'=>$id,'nome' => $nome,'modelo'=> $modelo]) }}">
             @csrf
       <!-- Nome -->
 <div class="mb-4">

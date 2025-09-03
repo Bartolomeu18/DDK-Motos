@@ -22,10 +22,12 @@ class GaragemController extends Controller
      //$nome = $nomeDoMotoqueiro->name;
      $modeloDaMotoNoCampo = moto::where('id',$MCampo->moto_id)->first();
     // $modelo = $modeloDaMotoNoCampo->modelo;
-    
+    $horaDeChegada = garagem::where('id_motoqueiro',$MCampo->motoqueiro_id)->first();
     $dados[]=[
         'nomeMotoqueiro'=>$nomeDoMotoqueiro->name,
         'modeloMoto'=> $modeloDaMotoNoCampo->modelo,
+        'id'=>$MCampo->moto_id,
+        'horaDeChegada'=>$horaDeChegada?->hora_de_chegada,
     ];
     }
 
@@ -36,17 +38,20 @@ class GaragemController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(string $nome,$modelo)
+    public function create(string $id,$nome,$modelo)
     {
         //dd($dado);
-       return view('Agente.Garagem.formulário',compact('nome','modelo'));
+       return view('Agente.Garagem.formulário',compact('id','nome','modelo'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request,string $id,string $nome,string $modelo)
     {
+
+//dd($id);
+
         $request->validate([
     'hora_de_chegada' => 'required|date_format:H:i',
 ]);
@@ -59,6 +64,8 @@ class GaragemController extends Controller
     'divida'=>$request->divida,
     'multa' =>$request->multa,
     'hora_de_chegada' =>$request->hora_de_chegada,
+    'id_motoqueiro'=>$id,
+
         ]);
           return redirect()->back()->with('sucesso', 'moto recebida');
         } catch (\Throwable $th) {

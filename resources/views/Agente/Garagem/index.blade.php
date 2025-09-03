@@ -40,9 +40,10 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-100">
                 <tr>
+                   <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">ID</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Motoqueiro</th>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Moto</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Hora de saida</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Data de saida</th> 
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Hora de chegada</th> 
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ação</th>                    
                 </tr>
@@ -50,20 +51,22 @@
             <tbody class="divide-y divide-gray-200">
                 @forelse ($dados as $dado)
                     <tr>
-                        <td class="px-6 py-4">{{$dado['nomeMotoqueiro']}}</td>
+                      <td class="px-6 py-4">{{$dado['id']}}</td>
+                       <td class="px-6 py-4">{{$dado['nomeMotoqueiro']}}</td>
                         <td class="px-6 py-4">{{$dado['modeloMoto']}}</td>
                         <td class="px-6 py-4 capitalize"> {{$data}} </td>
-                 
+                        <td class="px-6 py-4 capitalize">{{$dado['horaDeChegada']??'motoqueiro ainda no campo'}}</td>
+                        <td class="px-6 py-4 space-x-2">
+                            <a href="{{route('formulário-garagem', ['id'=>$dado['id'],'nome' => $dado['nomeMotoqueiro'],'modelo'=>$dado['modeloMoto']])}}"
+                               class="text-blue-600 hover:underline">Add Moto na Garagem</a>
+                        </td>
+                  </tr>
                 @empty
                     <tr>
                         <td colspan="4" class="px-6 py-4 text-center text-gray-500">Nenhum usuário encontrado.</td>
                     </tr>
                 @endforelse
-                       <td class="px-6 py-4 space-x-2">
-                            <a href="{{route('formulário-garagem', ['nome' => $dado['nomeMotoqueiro'],'modelo'=>$dado['modeloMoto']])}}"
-                               class="text-blue-600 hover:underline">Add Moto na Garagem</a>
-                        </td>
-                  </tr>
+                     
             </tbody>
         </table>
     </div>

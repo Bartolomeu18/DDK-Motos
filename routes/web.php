@@ -40,8 +40,8 @@ Route::get('/motoqueiros/rua', [MotoqueiroNoCampoController::class,'index'])->na
 Route::get('/Adicionar motoqueiro ao campo/{id}',[MotoqueiroNoCampoController::class,'store'])->name('motoqueiros-campo');
     //tira motoqueiro do campo(meter moto na garagem)
 Route::get('/Receber as motorizadas', [GaragemController::class, 'index'])->name('motos.garagem');
-route::get('/receber as motorizadas/formulário/{nome}/{modelo}',[GaragemController::class,'create'])->name('formulário-garagem');
-Route::post('/Cadastrar dados de chegada/{nome}/{modelo}',[GaragemController::class,'store'])->name('store-garagem');
+route::get('/receber as motorizadas/formulários/{id}/{nome}/{modelo}',[GaragemController::class,'create'])->name('formulário-garagem');
+Route::post('/Cadastrar dados de chegada/{id}/{nome}/{modelo}',[GaragemController::class,'store'])->name('store-garagem');
 
     // Relatórios
     Route::get('/relatorios/diario', [RelatorioController::class, 'diario'])->name('relatorios.diario');
