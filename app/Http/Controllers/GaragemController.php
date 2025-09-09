@@ -17,12 +17,13 @@ class GaragemController extends Controller
     {
     $MCampos=  Motoqueiro_ruas::where('date', today())->get();
         $data= today();
+        $dados= [];
     foreach ($MCampos as $MCampo) {
      $nomeDoMotoqueiro =User::where('id',$MCampo->motoqueiro_id)->first();
      //$nome = $nomeDoMotoqueiro->name;
      $modeloDaMotoNoCampo = moto::where('id',$MCampo->moto_id)->first();
     // $modelo = $modeloDaMotoNoCampo->modelo;
-    $horaDeChegada = garagem::where('id_motoqueiro',$MCampo->motoqueiro_id)->first();
+    $horaDeChegada = garagem::where('id_motoqueiro',$MCampo->motoqueiro_id)->whereDate('created_at',$data)->first();
     $dados[]=[
         'nomeMotoqueiro'=>$nomeDoMotoqueiro->name,
         'modeloMoto'=> $modeloDaMotoNoCampo->modelo,

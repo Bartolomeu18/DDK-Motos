@@ -12,7 +12,8 @@ class AgenteController extends Controller
      */
     public function index()
     {
-       return view('Agente.Dashboard');
+        $usuario = Auth::User();
+       return view('Agente.Dashboard', compact('usuario'));
     }
 
 

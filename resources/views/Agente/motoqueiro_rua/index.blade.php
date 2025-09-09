@@ -58,7 +58,7 @@
                         <td class="px-6 py-4 capitalize">{{ $usuario->endereco }}</td>
                         <td class="px-6 py-4 space-x-2">
                             <a href="{{route('motoqueiros-campo',['id'=>$usuario->id])}}"
-                               class="text-blue-600 hover:underline">Add no Campo</a>
+                               class="text-blue-600 hover:underline"><i class="fa-solid fa-plus" style="color: #0080ff;"></i></a>
                         </td>
                     </tr>
                 @empty

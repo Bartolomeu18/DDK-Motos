@@ -58,7 +58,7 @@
                         <td class="px-6 py-4 capitalize">{{$dado['horaDeChegada']??'motoqueiro ainda no campo'}}</td>
                         <td class="px-6 py-4 space-x-2">
                             <a href="{{route('formulário-garagem', ['id'=>$dado['id'],'nome' => $dado['nomeMotoqueiro'],'modelo'=>$dado['modeloMoto']])}}"
-                               class="text-blue-600 hover:underline">Add Moto na Garagem</a>
+                               class="text-blue-600 hover:underline"><i class="fa-solid fa-plus" style="color: #0080ff;"></i></a>
                         </td>
                   </tr>
                 @empty
