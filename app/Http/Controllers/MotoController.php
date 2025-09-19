@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\moto;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class MotoController extends Controller
@@ -12,9 +13,28 @@ class MotoController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
+        if (Auth::User('rule','admin')) {
+              $request = request('search');
+        if($request){
+        $motos = moto::where('modelo','like','%'.$request.'%')->get();
+        return view('Admin.moto.index',compact('motos'));  
+        }else {
         $motos = moto::get();
-        return view('Agente.moto.index',compact('motos'));
+        return view('Admin.moto.index',compact('motos'));  
+        }      
+        }else {
+        $request = request('search');
+        if($request){
+        $motos = moto::where('name','like','%'.$request.'%')->get();
+        return view('Agente.moto.index',compact('motos'));  
+        }else {
+        $motos = moto::get();
+        return view('Agente.moto.index',compact('motos'));  
+        }  
+        }
+      
+       
     }
 
     /**

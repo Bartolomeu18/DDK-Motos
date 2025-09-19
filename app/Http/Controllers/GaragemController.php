@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Garagem;
 use App\Models\User;
 use App\Models\Motoqueiro_ruas;
@@ -15,6 +15,28 @@ class GaragemController extends Controller
      */
     public function index()
     {
+        if (Auth::User('rule','admin')) {
+           
+    $MCampos=  Motoqueiro_ruas::where('date', today())->get();
+        $data= today();
+        $dados= [];
+    foreach ($MCampos as $MCampo) {
+     $nomeDoMotoqueiro =User::where('id',$MCampo->motoqueiro_id)->first();
+     //$nome = $nomeDoMotoqueiro->name;
+     $modeloDaMotoNoCampo = moto::where('id',$MCampo->moto_id)->first();
+    // $modelo = $modeloDaMotoNoCampo->modelo;
+    $horaDeChegada = garagem::where('id_motoqueiro',$MCampo->motoqueiro_id)->whereDate('created_at',$data)->first();
+    $dados[]=[
+        'nomeMotoqueiro'=>$nomeDoMotoqueiro->name,
+        'modeloMoto'=> $modeloDaMotoNoCampo->modelo,
+        'id'=>$MCampo->moto_id,
+        'horaDeChegada'=>$horaDeChegada?->hora_de_chegada,
+    ];
+    }
+
+     
+       return view('Admin.Garagem.index', compact('dados','data'));
+        }else{
     $MCampos=  Motoqueiro_ruas::where('date', today())->get();
         $data= today();
         $dados= [];
@@ -34,6 +56,7 @@ class GaragemController extends Controller
 
      
        return view('Agente.Garagem.index', compact('dados','data'));
+       }
     }
 
     /**

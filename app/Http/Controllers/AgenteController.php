@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\moto;
+
 class AgenteController extends Controller
 {
       /**
@@ -12,8 +14,18 @@ class AgenteController extends Controller
      */
     public function index()
     {
+        if (Auth::User('rule','admin')) {
+            $motorizadas = moto::count();
+        $motoqueiros = User::where('role','motoqueiro')->count();
         $usuario = Auth::User();
-       return view('Agente.Dashboard', compact('usuario'));
+       return view('Admin.Agente.Dashboard', compact('usuario','motorizadas','motoqueiros'));
+        }else {
+          $motorizadas = moto::count();
+        $motoqueiros = User::where('role','motoqueiro')->count();
+        $usuario = Auth::User();
+       return view('Agente.Dashboard', compact('usuario','motorizadas','motoqueiros'));   
+        }
+       
     }
 
 
@@ -79,7 +91,7 @@ class AgenteController extends Controller
     public function update(Request $request, string $id)
     {
         try {
-        User::where($id)->Update([
+        User::where('id',$id)->Update([
     'nome' => $request->nome,
     'email' => $request->email,
     'telefone'=> $request->telefone,

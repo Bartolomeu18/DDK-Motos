@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\moto;
 use App\Http\Requests\UserRequest;
 class MotoqueiroController extends Controller
 {
@@ -13,7 +15,15 @@ class MotoqueiroController extends Controller
      */
     public function index()
     {
-        
+                if(Auth::User('rule','Admin')){
+        $motorizadas = moto::count();
+        $usuarios = User::where('role','motoqueiro')->get();
+       return view('Admin.motoqueiros.index', compact('motorizadas','usuarios'));
+        }else {
+        return view('Agente.Dashboard', compact('motorizadas','motoqueiros'));
+                //return view('Agente.motoqueiros.index',compact('usuarios'));
+
+        }
     }
 
     /**

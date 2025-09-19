@@ -1,16 +1,27 @@
-@extends('layouts.agente')
+@extends('layouts.Admin')
 
 @section('content')
-<div class="max-w-6xl mx-auto px-4 py-8 ">
-    <div class=" flex justify-around  gap-10">
-    <div class="bg-blue-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
-        <h2>{{$motoqueiros }}  Motoqueiros</h2>
+
+ <h2 class="text-2xl font-bold text-red-600 mb-6 text-center pt-4">Informações de Agentes</h2>   <!-- Barra de pesquisa -->
+    <form method="GET" action="" class="mb-6">
+        @csrf
+        <div class="flex items-center space-x-2">
+            <input type="text" name="search" value="{{ request('search') }}"
+                   placeholder="Buscar por nome ou email"
+                   class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Buscar
+            </button>
+        </div>
+    </form>
+        <!-- Botão de novo usuário -->
+    <div class="mb-4 text-right">
+        <a href="{{route('tela-cadastro ')}}"
+           class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            + Novo Agente
+        </a>
     </div>
-    <div class="bg-red-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
-        <h2>{{$motorizadas}}  Motorizadas</h2>
-    </div>
-    </div>
- <h2 class="text-2xl font-bold text-red-600 mb-6 text-center pt-4">Minhas Informações</h2>
+
     <!-- Tabela de usuários -->
     <div class="overflow-x-auto bg-white shadow rounded-lg">
         <table class="min-w-full divide-y divide-gray-200 scrollbar-hidden">

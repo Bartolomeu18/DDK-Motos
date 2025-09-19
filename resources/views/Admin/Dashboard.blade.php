@@ -1,13 +1,56 @@
-<!DOCTYPE html>
-<html lang="pt_BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agente Dashboard</title>
-</head>
-<body>
-    
-<h1>Admin</h1>
+@extends('layouts.Admin')
 
-</body>
-</html>
+@section('content')
+<div class="max-w-6xl mx-auto px-4 py-8 ">
+    <div class=" flex justify-around  gap-10">
+    <div class="bg-blue-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
+        <h2>{{$motoqueiros }}  Motoqueiros</h2>
+    </div>
+    <div class="bg-red-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
+        <h2>{{$motorizadas}}  Motorizadas</h2>
+    </div>
+        <div class="bg-green-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
+        <h2>{{$Agente}}  Agentes</h2>
+    </div>
+    </div>
+ <h2 class="text-2xl font-bold text-red-600 mb-6 text-center pt-4">Minhas Informações</h2>
+    <!-- Tabela de usuários -->
+    <div class="overflow-x-auto bg-white shadow rounded-lg">
+        <table class="min-w-full divide-y divide-gray-200 scrollbar-hidden">
+            <thead class="bg-gray-100">
+                <tr>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nome</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Email</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Telefone</th>                    
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Bilhete de Identidade</th>                   
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Endereço</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+                    <tr>
+                        <td class="px-6 py-4">{{ $usuario->name }}</td>
+                        <td class="px-6 py-4">{{ $usuario->email }}</td>
+                        <td class="px-6 py-4 capitalize">{{ $usuario->telefone }}</td>
+                        <td class="px-6 py-4">{{ $usuario->bi_passaporte }}</td>
+                        <td class="px-6 py-4 capitalize">{{ $usuario->endereco }}</td>
+                        <td class="px-6 py-4 space-x-2">
+                            <a href="{{route('editar-motoqueiro',['user'=>$usuario->id])}}"
+                               class="text-blue-600 hover:underline"><i class="fa-solid fa-pen-to-square" style="color: #0080ff;"></i></a>
+                            <form action="{{route('excluir-motoqueiro',['user'=>$usuario->id])}}" method="POST" class="inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="text-red-600 hover:underline"
+                                        onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
+                                    <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+              
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@endSection

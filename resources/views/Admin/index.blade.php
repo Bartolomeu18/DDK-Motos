@@ -1,19 +1,33 @@
-@extends('layouts.agente')
+@extends('layouts.Admin')
 
 @section('content')
-<div class="max-w-6xl mx-auto px-4 py-8 ">
-    <div class=" flex justify-around  gap-10">
-    <div class="bg-blue-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
-        <h2>{{$motoqueiros }}  Motoqueiros</h2>
+<div class="max-w-7xl mx-auto px-4 py-8">
+    <h2 class="text-2xl font-bold text-red-600 mb-6 text-center">Gestão de ADMIN</h2>
+
+    <!-- Barra de pesquisa -->
+    <form method="GET" action="" class="mb-6">
+        @csrf
+        <div class="flex items-center space-x-2">
+            <input type="text" name="search" value="{{ request('search') }}"
+                   placeholder="Buscar por nome ou email"
+                   class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                Buscar
+            </button>
+        </div>
+    </form>
+
+    <!-- Botão de novo usuário -->
+    <div class="mb-4 text-right">
+        <a href="{{route('Admin.create')}}"
+           class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            + Novo Admin
+        </a>
     </div>
-    <div class="bg-red-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
-        <h2>{{$motorizadas}}  Motorizadas</h2>
-    </div>
-    </div>
- <h2 class="text-2xl font-bold text-red-600 mb-6 text-center pt-4">Minhas Informações</h2>
+
     <!-- Tabela de usuários -->
     <div class="overflow-x-auto bg-white shadow rounded-lg">
-        <table class="min-w-full divide-y divide-gray-200 scrollbar-hidden">
+        <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-100">
                 <tr>
                     <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nome</th>
@@ -25,6 +39,7 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
+                @forelse ($usuarios as $usuario)
                     <tr>
                         <td class="px-6 py-4">{{ $usuario->name }}</td>
                         <td class="px-6 py-4">{{ $usuario->email }}</td>
@@ -32,23 +47,25 @@
                         <td class="px-6 py-4">{{ $usuario->bi_passaporte }}</td>
                         <td class="px-6 py-4 capitalize">{{ $usuario->endereco }}</td>
                         <td class="px-6 py-4 space-x-2">
-                            <a href="{{route('editar-motoqueiro',['user'=>$usuario->id])}}"
+                            <a href="{{route('Admin.edite',['id'=>$usuario->id])}}"
                                class="text-blue-600 hover:underline"><i class="fa-solid fa-pen-to-square" style="color: #0080ff;"></i></a>
-                            <form action="{{route('excluir-motoqueiro',['user'=>$usuario->id])}}" method="POST" class="inline">
+                            <form action="{{route('Admin.delete',['id'=>$usuario->id])}}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:underline"
                                         onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
-                                    <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
+                                       <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
                                 </button>
                             </form>
                         </td>
                     </tr>
-              
+                @empty
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">Nenhum usuário encontrado.</td>
+                    </tr>
+                @endforelse
             </tbody>
         </table>
     </div>
 </div>
-
-
 @endsection

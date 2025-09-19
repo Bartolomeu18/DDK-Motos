@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Motoqueiro_ruas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\moto;
 
@@ -14,6 +15,18 @@ class MotoqueiroNoCampoController extends Controller
      */
     public function index()
     {
+
+        if (Auth::User('rule','admin')) {
+    $request = request('search');
+    //dd($request );
+        if($request){
+        $usuarios= User::where('name','like','%'.$request.'%')->get();  
+        }else{
+           $usuarios= User::where('role','motoqueiro')->get();
+        }
+       // dd($usuarios);
+        return view('Admin.motoqueiro_rua.index',compact('usuarios'));
+        }else{
          $request = request('search');
     //dd($request );
         if($request){
@@ -23,7 +36,7 @@ class MotoqueiroNoCampoController extends Controller
         }
        // dd($usuarios);
         return view('Agente.motoqueiro_rua.index',compact('usuarios'));
-   
+   }
     }
 
     /**

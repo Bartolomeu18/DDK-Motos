@@ -22,7 +22,7 @@ class LoginController extends Controller
 
             }elseif(Auth::User()->where('role','admin')){
 
-                return 'ainda não existe admin burro';
+               return redirect()->route('Admin.index');                        //'ainda não existe admin burro';
             }
         }else{
             return redirect()->back()->with('error','usuário desconhecido');

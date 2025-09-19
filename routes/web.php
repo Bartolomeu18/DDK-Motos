@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AgenteController;
 use  App\Http\Controllers\MotoqueiroController;
 use App\Http\Controllers\MotoController;
@@ -19,12 +20,21 @@ Route::post('/Cadastrar-Usuário',[LoginController::class,'store'])->name('cadas
 
 
 Route::middleware(['auth'])->group(function () {
-
+     //route admin list
+Route::get('/Admin/Dashboard',[AdminController::class,'index'])->name('Admin.index');
+Route::get('/Admin/Dashboard/index',[AdminController::class,'show'])->name('Admin.show');
+Route::get('/Admin/create',[AdminController::class,'create'])->name('Admin.create');
+Route::post('/Admin/create/store',[AdminController::class,'store'])->name('Admin.store');
+Route::get('/Admin/Dasboaard/editar/{id}',[AdminController::class,'edite'])->name('Admin.edite');
+Route::put('/Admin/Dasboaard/editar/update/{id}',[AdminController::class,'update'])->name('Admin.update');
+route::delete('/Admin/Dasboaard/deletar/{id}',[AdminController::class,'Delete'])->name('Admin.delete');
+Route::get('/Admin/logout',[AdminController::class,'logout'])->name('Admin.logout');
     //Agents route list
-Route::get('/dashboard', [AgenteController::class, 'index'])->name('dashboard');
+Route::get('/Agente/dashboard', [AgenteController::class, 'index'])->name('dashboard');
 Route::get('/logout',[AgenteController::class,'logout'])->name('logout');
 Route::get('/gestão de motoqueiros',[AgenteController::class,'motoqueiros'])->name('gestão-motoqueiro');
     // Motoqueiros
+Route::get('/Admin/motoqueiros',[MotoqueiroController::class, 'index'])->name('motoqueiros.index');    
 Route::get('/motoqueiros/create', [MotoqueiroController::class, 'create'])->name('motoqueiros.create');
 Route::post('/motoqueiros/store', [MotoqueiroController::class, 'store'])->name('motoqueiros.store');
 Route::get('/motoqueiros/{user}/edit', [MotoqueiroController::class, 'edit'])->name('editar-motoqueiro');
