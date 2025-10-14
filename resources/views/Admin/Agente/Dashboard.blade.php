@@ -1,23 +1,22 @@
-@extends('layouts.Admin')
+@extends('layouts.Agente')
 
 @section('content')
-
- <h2 class="text-2xl font-bold text-red-600 mb-6 text-center pt-4">Informações de Agentes</h2>   <!-- Barra de pesquisa -->
-    <form method="GET" action="" class="mb-6">
+   <!-- Barra de pesquisa -->
+    <form method="GET" action="" class="mb-6 mt-15 ">
         @csrf
         <div class="flex items-center space-x-2">
             <input type="text" name="search" value="{{ request('search') }}"
                    placeholder="Buscar por nome ou email"
-                   class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+                   class="w-full px-4 py-2 border border-gray-200 shadow-md rounded-md focus:ring-blue-500 focus:border-blue-500">
+            <button type="submit" class="bg-blue-600 text-white border border-blue-100 shadow-md px-4 py-2 roundedmd hover:bg-blue-700">
                 Buscar
             </button>
         </div>
     </form>
         <!-- Botão de novo usuário -->
     <div class="mb-4 text-right">
-        <a href="{{route('tela-cadastro ')}}"
-           class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+        <a href="{{route('tela-cadastro')}}"
+           class="bg-green-600 text-white px-4 py-2 my-2 border border-gray-200 shadow-md rounded-md hover:bg-green-700">
             + Novo Agente
         </a>
     </div>
@@ -25,18 +24,18 @@
     <!-- Tabela de usuários -->
     <div class="overflow-x-auto bg-white shadow rounded-lg">
         <table class="min-w-full divide-y divide-gray-200 scrollbar-hidden">
-            <thead class="bg-gray-100">
+            <thead class="bg-red-500">
                 <tr>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nome</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Email</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Telefone</th>                    
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Bilhete de Identidade</th>                   
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Endereço</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ações</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Nome</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Email</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Telefone</th>                    
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Bilhete de Identidade</th>                   
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Endereço</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Ações</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                    <tr>
+                    <tr class="text-gray-600 hover:bg-red-50">
                         <td class="px-6 py-4">{{ $usuario->name }}</td>
                         <td class="px-6 py-4">{{ $usuario->email }}</td>
                         <td class="px-6 py-4 capitalize">{{ $usuario->telefone }}</td>
@@ -61,5 +60,5 @@
     </div>
 </div>
 
-
+</div>
 @endsection

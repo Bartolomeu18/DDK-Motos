@@ -1,8 +1,8 @@
 @extends('layouts.agente')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 py-8">
-    <h2 class="text-2xl font-bold text-red-600 mb-6 text-center">Receber Motos</h2>
+<div class="max-w-7xl mx-auto px-4 py-8 ">
+    <h2 class="text-2xl font-bold text-red-600 mb-6 text-left">Receber Motos</h2>
 
     <!-- Barra de pesquisa -->
     <form method="GET" action="" class="mb-6">
@@ -10,9 +10,9 @@
         <div class="flex items-center space-x-2">
             <input type="text" name="search" value="{{ request('search') }}"
                    placeholder="Buscar por nome ou email"
-                   class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Buscar
+                  class="w-full px-4 py-2 border border-gray-200 shadow-lg rounded-md focus:ring-blue-500 focus:border-blue-500">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 shadow-lg shadow-gray-400 rounded hover:bg-blue-700">
+                 Buscar
             </button>
         </div>
     </form>
@@ -36,21 +36,21 @@
         </div>
     @endif
     <!-- Tabela de usuários -->
-    <div class="overflow-x-auto bg-white shadow rounded-lg">
+    <div class="overflow-x-auto bg-white shadow-2xl rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-100">
+            <thead class="bg-red-500">
                 <tr>
-                   <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">ID</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Motoqueiro</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Moto</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Data de saida</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Hora de chegada</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ação</th>                    
+                   <th class="px-6 py-3 text-left text-sm font-medium text-white">ID</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Motoqueiro</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Moto</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Data de saida</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Hora de chegada</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Ação</th>                    
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse ($dados as $dado)
-                    <tr>
+                    <tr class="hover:bg-red-50 text-gray-600">
                       <td class="px-6 py-4">{{$dado['id']}}</td>
                        <td class="px-6 py-4">{{$dado['nomeMotoqueiro']}}</td>
                         <td class="px-6 py-4">{{$dado['modeloMoto']}}</td>

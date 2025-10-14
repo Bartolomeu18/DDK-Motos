@@ -10,7 +10,7 @@
         <div class="flex items-center space-x-2">
             <input type="text" name="search" value="{{ request('search') }}"
                    placeholder="Buscar por nome ou email"
-                   class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
+                   class="w-full px-4 py-2 border border-gray-200 shadow-lg rounded-md focus:ring-blue-500 focus:border-blue-500">
             <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
                 Buscar
             </button>

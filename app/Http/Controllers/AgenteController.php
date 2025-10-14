@@ -18,7 +18,7 @@ class AgenteController extends Controller
             $motorizadas = moto::count();
         $motoqueiros = User::where('role','motoqueiro')->count();
         $usuario = Auth::User();
-       return view('Admin.Agente.Dashboard', compact('usuario','motorizadas','motoqueiros'));
+       return view('Agente.Dashboard', compact('usuario','motorizadas','motoqueiros'));
         }else {
           $motorizadas = moto::count();
         $motoqueiros = User::where('role','motoqueiro')->count();

@@ -1,8 +1,8 @@
 @extends('layouts.agente')
 
 @section('content')
-<div class="max-w-7xl mx-auto px-4 py-8">
-    <h2 class="text-2xl font-bold text-red-600 mb-6 text-center">Motoqueiro nas ruas </h2>
+<div class="max-w-7xl mx-auto px-4 py-8 ml-4">
+    <h2 class="text-2xl font-bold text-red-600 mb-6 text-left">Motoqueiro nas ruas </h2>
 
     <!-- Barra de pesquisa -->
     <form method="GET" action="" class="mb-6">
@@ -10,9 +10,9 @@
         <div class="flex items-center space-x-2">
             <input type="text" name="search" value="{{ request('search') }}"
                    placeholder="Buscar por nome ou email"
-                   class="w-full px-4 py-2 border rounded-md focus:ring-blue-500 focus:border-blue-500">
-            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-                Buscar
+                      class="w-full px-4 py-2 border border-gray-200 shadow-lg rounded-md focus:ring-blue-500 focus:border-blue-500">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 shadow-lg shadow-gray-400 rounded hover:bg-blue-700">
+             Buscar
             </button>
         </div>
     </form>
@@ -36,21 +36,21 @@
         </div>
     @endif
     <!-- Tabela de usuários -->
-    <div class="overflow-x-auto bg-white shadow rounded-lg">
+    <div class="overflow-x-auto bg-white  mt-2 shadow-2xl rounded-lg">
         <table class="min-w-full divide-y divide-gray-200">
-            <thead class="bg-gray-100">
+            <thead class="bg-red-500">
                 <tr>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nome</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Email</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Telefone</th>                    
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Bilhete de Identidade</th>                   
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Endereço</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ações</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Nome</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Email</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Telefone</th>                    
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Bilhete de Identidade</th>                   
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Endereço</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Ações</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
                 @forelse ($usuarios as $usuario)
-                    <tr>
+                    <tr class="hover:bg-red-50 text-gray-600">
                         <td class="px-6 py-4">{{ $usuario->name }}</td>
                         <td class="px-6 py-4">{{ $usuario->email }}</td>
                         <td class="px-6 py-4 capitalize">{{ $usuario->telefone }}</td>

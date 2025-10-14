@@ -11,10 +11,13 @@
 <body class="bg-gray-100 font-sans min-h-screen flex flex-col">
 
     <!-- Navbar -->
-    <header class="bg-white shadow-md">
+    <header class="shadow-md">
         <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-            <h1 class="text-xl font-bold text-red-600 ml-3">DDK-Motos</h1>
-            <div class="flex items-center space-x-4">
+          
+  <h2 class="text-2xl font-extrabold text-red-600 tracking-wide mb-2  ml-69 animate-pulse">
+         Painel de Controle dos Agentes
+    </h2>
+          <div class="flex items-center space-x-4">
                 <span class="text-gray-700">{{ Auth::user()->name }}</span>
                 <form method="POST" action="">
                     @csrf
@@ -27,8 +30,9 @@
     <!-- Menu lateral + conteúdo -->
     <div class="flex flex-1">
         <!-- Sidebar -->
-        <aside class="w-69 bg-white  shadow-md hidden md:block">
-<nav class="p-6 space-y-4 text-sm font-medium text-gray-700 flex flex-col gap-9">
+        <aside class="w-69 h-full hidden md:block bg-gray-800 absolute top-0  ">
+        <h1 class="text-xl ml-7 mt-5 mb-8 font-bold text-white ml-3">DDK-Motos</h1>
+<nav class="p-6 space-y-4 text-sm font-medium text-white flex flex-col gap-9 bg-gray-800">
     <a href="{{ route('dashboard') }}" class=" hover:text-red-600 text-md font-bold flex gap-3 items-center space-around">
     <i class="fa-solid fa-house" style="color: #ff0000;"></i> <p>Dashboard</p>
     </a>
@@ -57,7 +61,7 @@
         </aside>
 
         <!-- Conteúdo principal -->
-        <main class="flex-1 p-6">
+        <main class="flex-1 p-5 ml-69">
             @yield('content')
         </main>
     </div>

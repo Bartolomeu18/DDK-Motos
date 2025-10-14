@@ -3,29 +3,28 @@
 @section('content')
 <div class="max-w-6xl mx-auto px-4 py-8 ">
     <div class=" flex justify-around  gap-10">
-    <div class="bg-blue-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
+    <div class="bg-blue-600 rounded-md p-11 w-2/3 text-white text-md font-bold shadow-lg shadow-gray-400">
         <h2>{{$motoqueiros }}  Motoqueiros</h2>
     </div>
-    <div class="bg-red-600 rounded-md p-11 w-2/3 text-white text-md font-bold">
+    <div class="bg-red-600 rounded-md p-11 w-2/3 text-white text-md font-bold  shadow-lg shadow-gray-400">
         <h2>{{$motorizadas}}  Motorizadas</h2>
     </div>
     </div>
- <h2 class="text-2xl font-bold text-red-600 mb-6 text-center pt-4">Minhas Informações</h2>
     <!-- Tabela de usuários -->
-    <div class="overflow-x-auto bg-white shadow rounded-lg">
+    <div class="overflow-x-auto bg-white shadow rounded-lg  mt-15">
         <table class="min-w-full divide-y divide-gray-200 scrollbar-hidden">
-            <thead class="bg-gray-100">
+            <thead class="bg-red-500">
                 <tr>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Nome</th>
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Email</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Telefone</th>                    
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Bilhete de Identidade</th>                   
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Endereço</th> 
-                    <th class="px-6 py-3 text-left text-sm font-medium text-gray-700">Ações</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Nome</th>
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Email</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Telefone</th>                    
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Bilhete de Identidade</th>                   
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Endereço</th> 
+                    <th class="px-6 py-3 text-left text-sm font-medium text-white">Ações</th>
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
-                    <tr>
+                    <tr class="text-gray-600 hover:bg-red-50">
                         <td class="px-6 py-4">{{ $usuario->name }}</td>
                         <td class="px-6 py-4">{{ $usuario->email }}</td>
                         <td class="px-6 py-4 capitalize">{{ $usuario->telefone }}</td>

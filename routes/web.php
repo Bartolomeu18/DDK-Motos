@@ -15,7 +15,7 @@ Route::get('/', function () {
 });
 Route::get('/login',[LoginController::class,'index'])->name('login');
 Route::post('/login attempting',[LoginController::class,'Attempt'])->name('login-Attempt');
-Route::get('/Tela cadastro de Usuário',[LoginController::class,'cadastrar'])->name('tela-cadastro');
+Route::get('/Tela-cadastro-de-Usuário',[LoginController::class,'cadastrar'])->name('tela-cadastro');
 Route::post('/Cadastrar-Usuário',[LoginController::class,'store'])->name('cadastrar-usuário');
 
 

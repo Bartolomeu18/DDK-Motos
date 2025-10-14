@@ -35,7 +35,7 @@ class GaragemController extends Controller
     }
 
      
-       return view('Admin.Garagem.index', compact('dados','data'));
+       return view('Agente.Garagem.index', compact('dados','data'));
         }else{
     $MCampos=  Motoqueiro_ruas::where('date', today())->get();
         $data= today();
