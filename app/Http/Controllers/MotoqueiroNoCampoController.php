@@ -16,7 +16,7 @@ class MotoqueiroNoCampoController extends Controller
     public function index()
     {
 
-        if (Auth::User('rule','admin')) {
+        if (Auth::User()->role == 'admin') {
     $request = request('search');
     //dd($request );
         if($request){
@@ -25,7 +25,7 @@ class MotoqueiroNoCampoController extends Controller
            $usuarios= User::where('role','motoqueiro')->get();
         }
        // dd($usuarios);
-        return view('Agente.motoqueiro_rua.index',compact('usuarios'));
+        return view('Admin.motoqueiro_rua.index',compact('usuarios'));
         }else{
          $request = request('search');
     //dd($request );

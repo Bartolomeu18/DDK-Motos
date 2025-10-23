@@ -1,4 +1,4 @@
-@extends('layouts.Agente')
+@extends('layouts.Admin')
 
 @section('content')
    <!-- Barra de pesquisa -->
@@ -8,7 +8,7 @@
             <input type="text" name="search" value="{{ request('search') }}"
                    placeholder="Buscar por nome ou email"
                    class="w-full px-4 py-2 border border-gray-200 shadow-md rounded-md focus:ring-blue-500 focus:border-blue-500">
-            <button type="submit" class="bg-blue-600 text-white border border-blue-100 shadow-md px-4 py-2 roundedmd hover:bg-blue-700">
+            <button type="submit" class="bg-blue-600 text-white border border-blue-100 rounded-md shadow-md px-4 py-2 roundedmd hover:bg-blue-700">
                 Buscar
             </button>
         </div>
@@ -35,6 +35,7 @@
                 </tr>
             </thead>
             <tbody class="divide-y divide-gray-200">
+                @forelse($usuarios as $usuario)
                     <tr class="text-gray-600 hover:bg-red-50">
                         <td class="px-6 py-4">{{ $usuario->name }}</td>
                         <td class="px-6 py-4">{{ $usuario->email }}</td>
@@ -54,7 +55,11 @@
                             </form>
                         </td>
                     </tr>
-              
+                     @empty
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">Nenhum usuário encontrado.</td>
+                    </tr>
+              @endforelse
             </tbody>
         </table>
     </div>

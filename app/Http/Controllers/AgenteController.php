@@ -14,15 +14,16 @@ class AgenteController extends Controller
      */
     public function index()
     {
-        if (Auth::User('rule','admin')) {
+        if (Auth::User()->role =='admin') {
             $motorizadas = moto::count();
         $motoqueiros = User::where('role','motoqueiro')->count();
-        $usuario = Auth::User();
-       return view('Agente.Dashboard', compact('usuario','motorizadas','motoqueiros'));
+        $usuarios = User::where('role','Agente')->get();
+       return view('Admin.Agente.Dashboard', compact('usuarios','motorizadas','motoqueiros'));
         }else {
           $motorizadas = moto::count();
         $motoqueiros = User::where('role','motoqueiro')->count();
         $usuario = Auth::User();
+        $usuarios = User::where('role','Agente')->get();
        return view('Agente.Dashboard', compact('usuario','motorizadas','motoqueiros'));   
         }
        

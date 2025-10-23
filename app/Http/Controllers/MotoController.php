@@ -14,14 +14,14 @@ class MotoController extends Controller
      */
     public function index()
     {   
-        if (Auth::User('rule','admin')) {
+        if (Auth::User()->role == 'admin') {
               $request = request('search');
         if($request){
         $motos = moto::where('modelo','like','%'.$request.'%')->get();
         return view('Agente.moto.index',compact('motos'));  
         }else {
         $motos = moto::get();
-        return view('Agente.moto.index',compact('motos'));  
+        return view('Admin.moto.index',compact('motos'));  
         }      
         }else {
         $request = request('search');

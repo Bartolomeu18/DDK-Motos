@@ -15,7 +15,7 @@ class MotoqueiroController extends Controller
      */
     public function index()
     {
-                if(Auth::User('rule','Admin')){
+                if(Auth::User()->role == 'admin'){
         $motorizadas = moto::count();
         $usuarios = User::where('role','motoqueiro')->get();
        return view('Admin.motoqueiros.index', compact('motorizadas','usuarios'));
@@ -90,7 +90,7 @@ class MotoqueiroController extends Controller
     public function update(UserRequest $request, string $user)
     {
         try {
-        User::where($user)->Update([
+        User::where('id',$user)->Update([
     'name' => $request->name,
     'email' => $request->email,
     'telefone' => $request->telefone,
@@ -103,7 +103,7 @@ class MotoqueiroController extends Controller
              return redirect()->back()->with('sucesso','usuário editado com sucesso');
         } catch (\Throwable $th) {
             //throw $th;
-             return redirect()->back()->with('error','usuário não editado');
+             return redirect()->back()->with('error','usuário não editado'.$th);
         }
     }
 

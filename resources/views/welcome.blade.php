@@ -27,10 +27,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="bg-red-50 py-20 text-center">
+    <section class="bg-red-50 py-20 text-center relative overflow-hidden" style="background-image: url('{{ asset('img/motobg.png') }}'); background-size: cover; background-position: center;">
+
         <div class="max-w-4xl mx-auto px-4">
             <h2 class="text-4xl font-bold text-red-700 mb-4">Gestão Inteligente de Moto Táxis</h2>
-            <p class="text-lg mb-6 text-gray-700">
+            <p class="text-lg mb-6 text-white">
                 A DDK-Motos oferece uma plataforma completa para controlar, monitorar e otimizar o uso de motorizadas em serviços de moto táxi em Angola.
             </p>
             <a href="#contato"

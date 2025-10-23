@@ -15,7 +15,7 @@ class GaragemController extends Controller
      */
     public function index()
     {
-        if (Auth::User('rule','admin')) {
+        if (Auth::User()->role == 'admin') {
            
     $MCampos=  Motoqueiro_ruas::where('date', today())->get();
         $data= today();
@@ -35,7 +35,7 @@ class GaragemController extends Controller
     }
 
      
-       return view('Agente.Garagem.index', compact('dados','data'));
+       return view('Admin.Garagem.index', compact('dados','data'));
         }else{
     $MCampos=  Motoqueiro_ruas::where('date', today())->get();
         $data= today();

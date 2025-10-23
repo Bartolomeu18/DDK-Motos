@@ -33,14 +33,14 @@
                         <td class="px-6 py-4 space-x-2">
                             <a href="{{route('editar-motoqueiro',['user'=>$usuario->id])}}"
                                class="text-blue-600 hover:underline"><i class="fa-solid fa-pen-to-square" style="color: #0080ff;"></i></a>
-                            <form action="{{route('excluir-motoqueiro',['user'=>$usuario->id])}}" method="POST" class="inline">
+                        <!--    <form action="{{route('excluir-motoqueiro',['user'=>$usuario->id])}}" method="POST" class="inline">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="text-red-600 hover:underline"
                                         onclick="return confirm('Tem certeza que deseja excluir este usuário?')">
                                     <i class="fa-solid fa-trash" style="color: #ff0000;"></i>
                                 </button>
-                            </form>
+                            </form>-->
                         </td>
                     </tr>
               

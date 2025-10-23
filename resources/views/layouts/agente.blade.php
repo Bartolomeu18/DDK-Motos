@@ -8,7 +8,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
-<body class="bg-gray-100 font-sans min-h-screen flex flex-col">
+<body class="bg-gray-100 font-sans min-h-screen flex flex-col overflow-auto">
 
     <!-- Navbar -->
     <header class="shadow-md">
@@ -19,7 +19,7 @@
     </h2>
           <div class="flex items-center space-x-4">
                 <span class="text-gray-700">{{ Auth::user()->name }}</span>
-                <form method="POST" action="">
+                <form method="Get" action="{{route('Admin.logout')}}">
                     @csrf
                     <button type="submit" class="text-red-600 hover:underline"><i class="fa-solid fa-door-open" style="color: #ff0000;"></i></button>
                 </form>
@@ -30,9 +30,9 @@
     <!-- Menu lateral + conteúdo -->
     <div class="flex flex-1">
         <!-- Sidebar -->
-        <aside class="w-69 h-full hidden md:block bg-gray-800 absolute top-0  ">
+        <aside class="fixed top-0 left-0 w-72 md:w-64 lg:w-72 h-screen bg-gray-800  ">
         <h1 class="text-xl ml-7 mt-5 mb-8 font-bold text-white ml-3">DDK-Motos</h1>
-<nav class="p-6 space-y-4 text-sm font-medium text-white flex flex-col gap-9 bg-gray-800">
+<nav class="p-6 space-y-4 text-sm  h-full font-medium text-white flex flex-col gap-9 bg-gray-800">
     <a href="{{ route('dashboard') }}" class=" hover:text-red-600 text-md font-bold flex gap-3 items-center space-around">
     <i class="fa-solid fa-house" style="color: #ff0000;"></i> <p>Dashboard</p>
     </a>
@@ -61,13 +61,13 @@
         </aside>
 
         <!-- Conteúdo principal -->
-        <main class="flex-1 p-5 ml-69">
+        <main class="flex-1 p-5 ml-69 overflow-hidden ">
             @yield('content')
         </main>
     </div>
 
     <!-- Rodapé -->
-    <footer class="bg-gray-800 text-white py-4 text-center">
+    <footer class="bg-gray-800 text-white  py-4 text-center">
         <p>&copy; {{ date('Y') }} DDK-Motos. Sistema de Gestão de Moto Táxis em Angola.</p>
     </footer>
 

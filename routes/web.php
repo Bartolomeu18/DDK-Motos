@@ -56,4 +56,5 @@ route::get('/receber as motorizadas/formulários/{id}j/{nome}/{modelo}',[Garagem
 Route::post('/Cadastrar dados de chegada/{id}/{nome}/{modelo}',[GaragemController::class,'store'])->name('store-garagem');
    // Relatórios
 Route::get('/relatorios/diario', [RelatorioController::class, 'diario'])->name('relatorios.diario');
+//teste de view de ralactorio
 });
